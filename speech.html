@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text-to-Speech Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #text-input {
+        width: 80%;
+        margin: 20px auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    #language-select {
+        margin-bottom: 20px;
+    }
+    #speak-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <select id="language-select">
+        <option value="en">English</option>
+        <option value="am">Amharic</option>
+        <option value="om">Oromogna</option>
+        <option value="ti">Tigrigna</option>
+    </select>
+    <textarea id="text-input" rows="4" placeholder="Enter text to be spoken..."></textarea>
+    <button id="speak-button">Speak</button>
+
+    <script>
+        const speakButton = document.getElementById('speak-button');
+        const languageSelect = document.getElementById('language-select');
+        const textInput = document.getElementById('text-input');
+
+        speakButton.addEventListener('click', () => {
+            const text = textInput.value;
+            const language = languageSelect.value;
+            speak(text, language);
+        });
+
+        function speak(text, language) {
+            const utterance = new SpeechSynthesisUtterance();
+            utterance.text = text;
+            utterance.lang = language;
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
